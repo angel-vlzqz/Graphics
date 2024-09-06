@@ -1,0 +1,56 @@
+How would a developer implement a turtle graphics library in OpenGL? provide
+OpenGL examples for five functions, such as SetPosition(x,y), RotateLeft(angle)
+, MoveTo(x,y,distance), etc.
+
+To begin, I want to explain what turtle graphics are. Essentially, turtle
+graphics are a drawing method where a "turtle" on a screen acts like a pen, 
+leaving a trail as it moves. The turtle can move forward, turn, and change its
+pen color. To impliment this type of graphics in OpenGL, we can use the
+following functions:
+
+1. SetPosition(x,y): This function sets the position of the turtle to the
+specified (x,y) coordinates. This can be done by translating the modelview
+matrix to the specified position.
+
+void SetPosition(float x, float y) {
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glTranslatef(x, y, 0.0f);
+}
+
+2. RotateLeft(angle): This function rotates the turtle to the left by the
+specified angle. This can be done by rotating the modelview matrix by the
+specified angle.
+
+void RotateLeft(float angle) {
+    glMatrixMode(GL_MODELVIEW);
+    glRotatef(angle, 0.0f, 0.0f, 1.0f);
+}
+
+3. MoveTo(x, y, distance): This function moves the turtle to the specified
+(x,y) coordinates while drawing a line of the specified distance. This can be
+done by translating the modelview matrix to the specified position and drawing
+a line.
+
+void MoveTo(float x, float y, float distance) {
+    glMatrixMode(GL_MODELVIEW);
+    glTranslatef(x, y, 0.0f);
+    glBegin(GL_LINES);
+    glVertex2f(0.0f, 0.0f);
+    glVertex2f(distance, 0.0f);
+    glEnd();
+}
+
+4. SetColor(r, g, b): This function sets the color of the turtle's pen to the
+specified RGB values. This can be done by setting the color using glColor3f.
+
+void SetColor(float r, float g, float b) {
+    glColor3f(r, g, b);
+}
+
+5. PenUp(): This function lifts the turtle's pen, so it no longer draws lines
+as it moves. This can be done by disabling the GL_LINE_LOOP mode.
+
+void PenUp() {
+    glDisable(GL_LINE_LOOP);
+}
