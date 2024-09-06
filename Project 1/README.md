@@ -3,7 +3,7 @@ Unless you are Ricardo Citro, you should not be reading this document.
 If you are Ricardo Citro, then all the necessary dependencies should be on
 your system, which means that running these files should be a breeze.
 
-To compile the the 2D Sierpinski program, make sure you are in the `code\ 
+To compile the the 2D Sierpinski program, make sure you are in the `code 
 snippets` folder, then compile the file by typing the following
 command into your terminal:
 `g++ Sierpinski2D.cpp -o Sierpinski2D -lglut -lGLU -lGL`
