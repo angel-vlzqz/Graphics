@@ -1,0 +1,30 @@
+what makes an object more difficult to recreate in openGL? What types of objects are easier to recreate in OpenGL? Provide an example for each, and explain why.
+
+Typically, curved and animated objects are more difficult to recreate in OpenGL
+than simple objects. This is because OpenGL is a low-level API that is designed
+to render simple shapes and objects. Curved objects require more vertices, 
+which can be difficult and tedious to create. Animated objects require more
+complex transformations and calculations, which can be challenging to implement
+in OpenGL.
+
+curved object in OpenGL:
+A sphere is an example of a curved object that is more difficult to recreate in
+OpenGL. 
+
+void drawSphere(float radius, int slices, int stacks) {
+    glPushMatrix();
+    glTranslatef(0.0, 0.0, 0.0);
+    glutSolidSphere(radius, slices, stacks);
+    glPopMatrix();
+}
+
+animated object in OpenGL:
+A rotating cube is an example of an animated object that is more difficult to
+recreate in OpenGL.
+
+void drawRotatingCube(float angle) {
+    glPushMatrix();
+    glRotatef(angle, 1.0, 1.0, 1.0);
+    glutSolidCube(1.0);
+    glPopMatrix();
+}
