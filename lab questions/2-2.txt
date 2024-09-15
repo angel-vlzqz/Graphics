@@ -1,0 +1,5 @@
+1. How do I pass data from a vertex shader to a fragment shader?
+
+2. What is the role of normal mapping in simulating surface detail?
+
+3. What is the purpose of double buffering in rendering?
