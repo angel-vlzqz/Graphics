@@ -1,0 +1,2 @@
+What are meshes, and what would is the difference between a mesh and a texture?
+Also, why would we use a virtual camera if we can already print objects in 3D?

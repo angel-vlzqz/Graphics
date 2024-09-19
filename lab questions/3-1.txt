@@ -1,0 +1,7 @@
+For rendering the floor, I believe that the best aproach would be
+utilizing a container with a wood texture in order to simulate the floor.
+For the walls, I would use another container with a drywall texture to properly
+simulate the walls. Then, the process would be repeated for the ceiling, and
+other flat surfaces. For the objects, I would use a combination of containers
+with textures that simulate the objects, and 2D models that are placed in the
+scene.
