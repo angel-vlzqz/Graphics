@@ -1,0 +1,11 @@
+In support of Project 4: Carefully read the description of Project 4. Choose 
+an object from your scene and describe which transformations you would apply 
+to the initial geometric representation in order to produce the desired shape. 
+Provide a screenshot of your implementation. Solicit feedback from the 
+instructor and peers.
+
+In Project 4, I chose to create a simple scene of a tv stand and a tv. I wanted
+to create a tv stand that had a simple design and was easy to create. For the
+transformations, I utilized a perspective projection matrix to create the
+effect of the tv stand being in a 3D space. Using this, I was able to create
+the general shape of the tv stand.
