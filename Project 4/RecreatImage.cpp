@@ -1,4 +1,4 @@
-#include <GLUT/glut.h>
+#include <GL/glut.h>
 #include <SOIL/SOIL.h>
 
 void rgbColorSelect(int r, int g, int b);
@@ -243,7 +243,7 @@ int main(int argc, char** argv) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH); // Enable double buffering and depth testing
     glutInitWindowSize(800, 600); // Set the window size
-    glutCreateWindow("OpenGL TV Stand Example"); // Create the window with a title
+    glutCreateWindow("OpenGL Part4"); // Create the window with a title
 
     initOpenGL(); // Call the initialization function
 
