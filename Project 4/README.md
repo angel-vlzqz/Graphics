@@ -6,3 +6,5 @@ This project aims to recreate the hand drawn image in part 3 using primitives in
 ## Building and running the Project
 1. Run the following command to build the project `g++ RecreatImage.cpp -o run -lglut -lGLU -lGL -lSOIL`
 2. To run the project run the following command `./run` 
+
+Github link: `https://github.com/angel-vlzqz/Graphics/tree/main/Project%204`
