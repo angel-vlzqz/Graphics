@@ -1,4 +1,4 @@
-#include <GL/glut.h>
+#include <GLUT/glut.h>
 #include <SOIL/SOIL.h>
 
 void rgbColorSelect(int r, int g, int b);
