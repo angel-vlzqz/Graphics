@@ -11,3 +11,6 @@ For installation run: sudo apt-get install libglew-dev freeglut3-dev libfreetype
 ## Building and running the Project
 1. Run the following command to build the project `g++ -I/usr/include/freetype2 ShinyCubes.cpp -o run -lGLU -lGL -lGLEW -lglfw -lfreetype`
 2. To run the project run the following command `./run` 
+
+## Github Link
+https://github.com/angel-vlzqz/Graphics/tree/main/Project%206
