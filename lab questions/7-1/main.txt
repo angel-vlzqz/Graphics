@@ -1,0 +1,38 @@
+1. Texture Mapping
+
+Definition:
+Texture mapping is the process of applying a 2D image, or “texture,” onto the surface of a 3D model. This texture image provides color and pattern details that make the model appear more realistic. It’s like “wrapping” the surface of a model with a photograph or design.
+
+Usage:
+Texture mapping is ideal for adding detail without increasing geometric complexity. For example, rather than modeling every brick in a wall, you can apply a texture of a brick wall onto a flat surface.
+
+Visual Example Description:
+Imagine a plain cube model with no textures — it would appear uniformly shaded and flat. After texture mapping, the cube’s surfaces could have images applied, such as a wooden texture, making it look like a wooden box. Even though the box remains geometrically simple, it visually gains depth and detail.
+
+2. Bump Mapping
+
+Definition:
+Bump mapping is a technique used to simulate small surface irregularities (like bumps and grooves) without actually altering the model’s geometry. Instead of adding physical details, bump mapping modifies the way light interacts with the surface. This trick creates the illusion of depth, making the surface appear rough or textured.
+
+Usage:
+Bump mapping is often used to add detail to surfaces that would be too computationally expensive to model, such as the roughness of stone, the grain of wood, or the tiny scales on a reptile’s skin.
+
+Visual Example Description:
+Imagine a stone wall. With bump mapping, the wall’s surface appears uneven and textured when light hits it, as though each stone has unique depth and contours. However, if you looked at the model from the side, you would see it’s still flat. Bump mapping gives a sense of roughness without actually modifying the model’s structure.
+
+3. Environment Mapping
+
+Definition:
+Environment mapping, or reflection mapping, simulates reflective surfaces by mapping an image of the surrounding environment onto the surface of a model. This is often done using techniques like cube mapping or spherical mapping, where the environment’s “reflection” is projected onto the object.
+
+Usage:
+Environment mapping is used for objects that need to appear shiny or reflective, such as mirrors, metals, or glass surfaces. This technique doesn’t render true reflections (as ray tracing would) but instead uses a pre-captured environment to mimic reflective properties.
+
+Visual Example Description:
+Consider a metallic ball placed in a room. With environment mapping, the ball’s surface would reflect the room, giving the appearance of a highly polished, mirror-like material. The reflections change depending on the viewer’s angle, giving an illusion of reflectivity.
+
+Summary
+
+	•	Texture Mapping: Applies a 2D image onto a model for basic color and detail, making it appear more realistic.
+	•	Bump Mapping: Creates the illusion of small surface detail (e.g., bumps or grooves) by manipulating light interaction without changing geometry.
+	•	Environment Mapping: Simulates reflections on a surface by mapping an image of the surroundings, giving a mirror-like appearance.
