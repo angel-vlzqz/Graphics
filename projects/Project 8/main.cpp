@@ -1,62 +1,95 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include <iostream>
+#include <cmath>
+#include <vector>
+#include <cstdlib>
 
 const int WIDTH = 800, HEIGHT = 800;
+const int TRAIL_LENGTH = 50;
+const int NUM_PARTICLES = 5;
 
-void drawLogisticMap() {
-    glClear(GL_COLOR_BUFFER_BIT);
-    glPointSize(1.0f);
-    glBegin(GL_POINTS);
+struct Particle {
+    float angle;
+    float radius;
+    float speed;
+    float r, g, b;
+    std::vector<float> xTrail;
+    std::vector<float> yTrail;
+    std::vector<float> brightnessTrail;
+};
 
-    // Parameters for the logistic map
-    float r, x = 0.5;
-    int iterations = 1000, lastIterations = 100;
+std::vector<Particle> particles;
 
-    for (r = 2.5f; r < 4.0f; r += 0.001f) {
-        x = 0.5f;  // Reset x for each r
+// Initialize particles with random parameters
+void initializeParticles() {
+    for (int i = 0; i < NUM_PARTICLES; ++i) {
+        Particle p;
+        p.angle = static_cast<float>(rand()) / RAND_MAX * 2.0f * M_PI;
+        p.radius = 0.3f + static_cast<float>(rand()) / RAND_MAX * 0.5f;
+        p.speed = 0.01f + static_cast<float>(rand()) / RAND_MAX * 0.05f;
+        p.r = static_cast<float>(rand()) / RAND_MAX;
+        p.g = static_cast<float>(rand()) / RAND_MAX;
+        p.b = static_cast<float>(rand()) / RAND_MAX;
 
-        // Iterate enough times to reach the "chaotic" region
-        for (int i = 0; i < iterations; i++) {
-            x = r * x * (1 - x);
-            if (i >= iterations - lastIterations) {
-                glVertex2f((r - 2.5f) / 1.5f * 2.0f - 1.0f, x * 2.0f - 1.0f);
-            }
+        p.xTrail.resize(TRAIL_LENGTH, 0.0f);
+        p.yTrail.resize(TRAIL_LENGTH, 0.0f);
+        p.brightnessTrail.resize(TRAIL_LENGTH, 0.0f);
+        particles.push_back(p);
+    }
+}
+
+void updateParticles() {
+    for (auto& p : particles) {
+        p.angle += p.speed;
+        if (p.angle > 2 * M_PI) p.angle -= 2 * M_PI;
+        float x = p.radius * cos(p.angle);
+        float y = p.radius * sin(p.angle);
+        // Shift trail positions
+        for (int i = TRAIL_LENGTH - 1; i > 0; --i) {
+            p.xTrail[i] = p.xTrail[i - 1];
+            p.yTrail[i] = p.yTrail[i - 1];
+            p.brightnessTrail[i] = p.brightnessTrail[i - 1] * 0.95f; // Fading effect
+        }
+        // Update the head of the trail
+        p.xTrail[0] = x;
+        p.yTrail[0] = y;
+        p.brightnessTrail[0] = 1.0f;
+    }
+}
+
+void drawParticles() {
+    for (const auto& p : particles) {
+        for (int i = 0; i < TRAIL_LENGTH; ++i) {
+            glColor4f(p.r, p.g, p.b, p.brightnessTrail[i]);
+            glBegin(GL_POINTS);
+            glVertex2f(p.xTrail[i], p.yTrail[i]);
+            glEnd();
         }
     }
-
-    glEnd();
-    glFlush();
 }
 
 int main() {
-    if (!glfwInit()) {
-        std::cerr << "Failed to initialize GLFW" << std::endl;
-        return -1;
-    }
-
-    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Chaos Theory (Logistic Map)", NULL, NULL);
-    if (!window) {
-        std::cerr << "Failed to create GLFW window" << std::endl;
-        glfwTerminate();
-        return -1;
-    }
+    if (!glfwInit()) return -1;
+    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Infinite Light Trail", NULL, NULL);
+    if (!window) { glfwTerminate(); return -1; }
     glfwMakeContextCurrent(window);
-
-    if (glewInit() != GLEW_OK) {
-        std::cerr << "Failed to initialize GLEW" << std::endl;
-        return -1;
-    }
-
-    glViewport(0, 0, WIDTH, HEIGHT);
+    glewInit();
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glOrtho(-1.0, 1.0, -1.0, 1.0, -1.0, 1.0);
     glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
+    glPointSize(5.0f);
+
+    // Initialize particles with random properties
+    initializeParticles();
 
     while (!glfwWindowShouldClose(window)) {
-        drawLogisticMap();
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        // Update and draw particles
+        updateParticles();
+        drawParticles();
+
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
