@@ -9,3 +9,6 @@ https://www.youtube.com/watch?v=k5ylLeNjdGk
 ## Building and running the Project
 1. Run the following command to build the project `g++ LightTrail.cpp -o run -lGL -lglut -lGLU`
 2. To run the project run the following command `./run` 
+
+## GitHub Link
+https://github.com/angel-vlzqz/Graphics/tree/main/projects/Project%208
